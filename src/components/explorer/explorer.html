@@ -1,0 +1,34 @@
+<div>
+    <pre>
+        <!-- {{catBreeds}} -->
+    </pre>
+
+    <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
+        <template #trigger>
+        <a
+            class="navbar-item"
+            role="button">
+            <span>Get Cat By Breeds</span>
+            <b-icon icon="menu-down"></b-icon>
+        </a>
+    </template>
+
+        <b-dropdown-item custom aria-role="listitem">
+            <b-input v-model="searchTerm" placeholder="search" expanded />
+        </b-dropdown-item>
+
+        <b-dropdown-item v-for="item of filteredData" :key="item.id" aria-role="listitem" @click="breedSelected(item.id)">
+            {{item.id}}
+        </b-dropdown-item>
+    </b-dropdown>
+
+
+    <template>
+        <div class="columns">
+            <div class="column" v-for="cat in cats" v-bind:key="cat.id">                
+                <Card :cat="cat" @clicked-cat="changeCat"/>
+            </div>            
+        </div>
+    </template>
+
+</div>
